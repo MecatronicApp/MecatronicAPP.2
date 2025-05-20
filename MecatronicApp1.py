@@ -131,7 +131,7 @@ if uploaded_files:
 
             # Leyenda de colores por ocupación
             st.markdown("""
-            ### 🟢 Leyenda de colores por % de ocupación:
+            ### Las clases apareceran con colores, esto indicara el % de ocupacion que contiene la clase:
             - 🟢 **Verde**: 0% – 49% de ocupación  
             - 🟡 **Amarillo**: 50% – 90% de ocupación  
             - 🔴 **Rojo**: 91% – 100% de ocupación  
