@@ -78,7 +78,7 @@ def mostrar_calendario(horario_df):
 
 # --- APP ---
 
-st.title("📅 Generador de Horarios -  🤖 Ingeniería Mecatrónica")
+st.title("📅 Generador de Horarios - Ingeniería Mecatrónica🤖")
 
 uploaded_files = st.file_uploader("Sube los archivos excel que desees (Consejo: Si vas a subir mas de un archivo excel ten presionado el control al seleccionarlo) ", type=["xlsx"], accept_multiple_files=True)
 
