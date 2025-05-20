@@ -64,7 +64,7 @@ def mostrar_calendario(horario_df):
             fontsize=8, verticalalignment='center'
         )
 
-    ax.set_xlim(0, 6)
+    ax.set_xlim(0, 7.5)  # espacio para leyenda
     ax.set_ylim(1320, 360)
     ax.set_xticks(range(6))
     ax.set_xticklabels(dias_semana)
@@ -74,13 +74,23 @@ def mostrar_calendario(horario_df):
     ax.set_xlabel("Día")
     ax.set_ylabel("Hora")
     ax.grid(True, axis='y', linestyle='--', alpha=0.5)
+
+    # Leyenda de colores
+    leyendas = [
+        ('0–49% ocupado', 'green'),
+        ('50–90% ocupado', 'gold'),
+        ('91–100% ocupado', 'red')
+    ]
+    for i, (label, color) in enumerate(leyendas):
+        ax.add_patch(patches.Rectangle((6.2, 1320 - i * 40), 0.3, 30, color=color, alpha=0.8))
+        ax.text(6.6, 1320 - i * 40 + 15, label, va='center', fontsize=9)
+
     st.pyplot(fig)
 
 # --- APP ---
-
 st.title("📅 Generador de Horarios - Ingeniería Mecatrónica🤖")
 
-uploaded_files = st.file_uploader("Sube los archivos excel que desees (Consejo: Si vas a subir mas de un archivo excel ten presionado el control al seleccionarlo) ", type=["xlsx"], accept_multiple_files=True)
+uploaded_files = st.file_uploader("Sube los archivos excel que desees (Consejo: Si vas a subir más de un archivo excel, mantén presionado Ctrl al seleccionarlo)", type=["xlsx"], accept_multiple_files=True)
 
 if uploaded_files:
     # Procesar archivos
@@ -116,6 +126,15 @@ if uploaded_files:
         if not seleccionadas:
             st.warning("Selecciona al menos una materia.")
         else:
+            # Mostrar advertencia si alguna clase está llena
+            llenas = df_largo[
+                (df_largo['Asignatura'].isin(seleccionadas)) &
+                (df_largo['Total Inscritos'] >= df_largo['Total Cupos'])
+            ]
+            if not llenas.empty:
+                st.warning("⚠️ Algunas clases están llenas y no serán tenidas en cuenta en la creacion del horario:")
+                st.dataframe(llenas[['Asignatura', 'Nº Clase', 'Día', 'Hora Ini', 'Hora Fin', 'Salon']])
+
             df_filtrado = df_largo[
                 (df_largo['Asignatura'].isin(seleccionadas)) &
                 (df_largo['Total Inscritos'] < df_largo['Total Cupos'])
