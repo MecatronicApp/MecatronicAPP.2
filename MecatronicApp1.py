@@ -78,9 +78,9 @@ def mostrar_calendario(horario_df):
 
 # --- APP ---
 
-st.title("📅 Generador de Horarios - Ingeniería Mecatrónica")
+st.title("📅 Generador de Horarios - 🤖 Ingeniería Mecatrónica")
 
-uploaded_files = st.file_uploader("Sube uno o varios archivos Excel", type=["xlsx"], accept_multiple_files=True)
+uploaded_files = st.file_uploader("Sube los archivos excel que desees (Consejo: Si vas a subir mas de un archivo excel ten presionado el control al seleccionarlo) ", type=["xlsx"], accept_multiple_files=True)
 
 if uploaded_files:
     # Procesar archivos
@@ -110,7 +110,7 @@ if uploaded_files:
     materias = sorted(df_largo['Asignatura'].unique())
     seleccionadas = st.multiselect("Selecciona las materias:", materias)
     jornada = st.radio("Selecciona la jornada:", ['Mañana (6:00 - 14:00)', 'Noche (18:00 - 22:00)', 'Mixta (6:00 - 22:00)'])
-    sede = st.radio("Selecciona la sede:", ['Todas', 'Chapinero', 'Sur', 'Crisanto Luque'])
+    sede = st.radio("Selecciona la sede:", ['Todas', 'Sedes principales Teusaquillo', 'Sur', 'Crisanto Luque'])
 
     if st.button("🔍 Generar combinaciones de horario"):
         if not seleccionadas:
