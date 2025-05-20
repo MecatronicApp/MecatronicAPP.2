@@ -109,7 +109,7 @@ if uploaded_files:
 
     materias = sorted(df_largo['Asignatura'].unique())
     seleccionadas = st.multiselect("Selecciona las materias:", materias)
-    jornada = st.radio("Selecciona la jornada:", ['Mañana (6:00 - 14:00)', 'Noche (18:00 - 22:00)', 'Mixta (6:00 - 22:00)'])
+    jornada = st.radio("Selecciona la jornada:", ['Mañana (8:00 - 14:00)', 'Noche (18:00 - 22:00)', 'Mixta (8:00 - 22:00)'])
     sede = st.radio("Selecciona la sede:", ['Todas', 'Sedes principales Teusaquillo', 'Sur', 'Crisanto Luque'])
 
     if st.button("🔍 Generar combinaciones de horario"):
