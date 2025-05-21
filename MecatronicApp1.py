@@ -127,7 +127,7 @@ if uploaded_files:
             ]
             if not clases_llenas.empty:
                 materias_llenas = clases_llenas['Asignatura'].unique()
-                st.error(f"⚠️ Las siguientes materias están llenas de cupos: {', '.join(materias_llenas)}")
+                st.error(f"⚠️ En algunas opciones no se va a mostrar las siguientes materias: {', '.join(materias_llenas)} esto se debe a que los cupos estan llenos")
 
             # Leyenda de colores por ocupación
             st.markdown("""
